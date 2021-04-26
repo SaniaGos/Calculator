@@ -28,11 +28,6 @@ namespace Calculator
             action = PrevAction.Add;
             clear = false;
         }
-
-        private void Form1_SizeChanged(object sender, EventArgs e)
-        {
-
-        }
         private void Action()
         {
             switch (action)
@@ -126,7 +121,7 @@ namespace Calculator
             Action();
             action = PrevAction.Add;
             clear = true;
-            //tmp = 0;
+            tmp = 0;
             textBoxEqual.Text = Convert.ToString(equal);
         }
         private void Minus()
@@ -141,7 +136,7 @@ namespace Calculator
             Action();
             action = PrevAction.Minus;
             clear = true;
-            //tmp = 0;
+            tmp = 0;
             textBoxEqual.Text = Convert.ToString(equal);
         }
         private void Multipl()
@@ -156,7 +151,7 @@ namespace Calculator
             Action();
             action = PrevAction.Multipl;
             clear = true;
-            //tmp = 0;
+            tmp = 0;
             textBoxEqual.Text = Convert.ToString(equal);
         }
         private void Division()
@@ -171,7 +166,7 @@ namespace Calculator
             Action();
             action = PrevAction.Division;
             clear = true;
-            //tmp = 0;
+            tmp = 0;
             textBoxEqual.Text = Convert.ToString(equal);
         }
         private void Equal()
@@ -184,6 +179,82 @@ namespace Calculator
                 textBoxEqual.Text = Convert.ToString(equal);
                 tmp = Convert.ToDouble(textBoxEqual.Text);
             }
+        }
+        private void buttonCE_Click(object sender, EventArgs e)
+        {
+            Esc();
+        }
+        private void buttonC_Click(object sender, EventArgs e)
+        {
+            textBoxEqual.Text = "";
+        }
+        private void buttonBckS_Click(object sender, EventArgs e)
+        {
+            BackSpase();
+        }
+        private void buttonDivision_Click(object sender, EventArgs e)
+        {
+            Division();
+        }
+        private void button_7_Click(object sender, EventArgs e)
+        {
+            Digit('7');
+        }
+        private void button_8_Click(object sender, EventArgs e)
+        {
+            Digit('8');
+        }
+        private void button_9_Click(object sender, EventArgs e)
+        {
+            Digit('9');
+        }
+        private void buttonMultiply_Click(object sender, EventArgs e)
+        {
+            Multipl();
+        }
+        private void buttonMinus_Click(object sender, EventArgs e)
+        {
+            Minus();
+        }
+        private void button_6_Click(object sender, EventArgs e)
+        {
+            Digit('6');
+        }
+        private void button_5_Click(object sender, EventArgs e)
+        {
+            Digit('5');
+        }
+        private void button_4_Click(object sender, EventArgs e)
+        {
+            Digit('4');
+        }
+        private void button_1_Click(object sender, EventArgs e)
+        {
+            Digit('1');
+        }
+        private void button_2_Click(object sender, EventArgs e)
+        {
+            Digit('2');
+        }
+        private void button_3_Click(object sender, EventArgs e)
+        {
+            Digit('3');
+        }
+        private void buttonPlus_Click(object sender, EventArgs e)
+        {
+            Add();
+        }
+        private void buttonEqual_Click(object sender, EventArgs e)
+        {
+            Equal();
+        }
+        private void button_0_Click(object sender, EventArgs e)
+        {
+            Digit('0');
+        }
+        private void buttonPoint_Click(object sender, EventArgs e)
+        {
+            Point();
         }
     }
 }
