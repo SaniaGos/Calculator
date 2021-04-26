@@ -25,7 +25,7 @@ namespace Calculator
             InitializeComponent();
             equal = 0;
             tmp = 0;
-            action = PrevAction.none;
+            action = PrevAction.Add;
             clear = false;
         }
 
@@ -55,7 +55,35 @@ namespace Calculator
         }
         private void Calculator_KeyPress(object sender, KeyPressEventArgs e)
         {
-            if (e.KeyChar >= '0' && e.KeyChar <= '9' && action != PrevAction.Equal)
+            if (e.KeyChar >= '0' && e.KeyChar <= '9') Digit(e.KeyChar);
+            else if (e.KeyChar == '.' || e.KeyChar == ',') Point();
+            else if (e.KeyChar == '=' || e.KeyChar == '\r') Equal();
+            else if (e.KeyChar == '+') Add();
+            else if (e.KeyChar == '-') Minus();
+            else if (e.KeyChar == '/') Division();
+            else if (e.KeyChar == '*') Multipl();
+            else if (e.KeyChar == '\b') BackSpase();
+            else if (e.KeyChar == '\u001b') Esc();
+        }
+        private void Esc()
+        {
+            equal = 0;
+            tmp = 0;
+            action = PrevAction.Add;
+            clear = false;
+            textBoxEqual.Text = "0";
+            textBoxActivity.Text = "";
+        }
+        private void BackSpase()
+        {
+            if (textBoxEqual.Text.Length > 1)
+                textBoxEqual.Text = textBoxEqual.Text.Remove(textBoxEqual.Text.Length - 1);
+            else textBoxEqual.Text = "0";
+            tmp = Convert.ToDouble(textBoxEqual.Text);
+        }
+        private void Digit(char sumbol)
+        {
+            if (action != PrevAction.Equal)
             {
                 if (clear || textBoxEqual.Text == "0")
                 {
@@ -65,68 +93,96 @@ namespace Calculator
                 if (textBoxEqual.Text.Length >= 10) return;
                 if (textBoxEqual.Text == "-0")
                 {
-                    textBoxEqual.Text = "-" + e.KeyChar.ToString();
+                    textBoxEqual.Text = "-" + sumbol.ToString();
                 }
                 else
                 {
-                    textBoxEqual.Text += e.KeyChar.ToString();
+                    textBoxEqual.Text += sumbol.ToString();
                 }
                 tmp = Convert.ToDouble(textBoxEqual.Text);
             }
-            else if (e.KeyChar == '.' || e.KeyChar == ',')
+        }
+        private void Point()
+        {
+            if (textBoxEqual.Text.Length == 0)
             {
-                if (textBoxEqual.Text.Length == 0)
-                {
-                    textBoxEqual.Text = "0,";
-                }
-                else
-                {
-                    textBoxEqual.Text += ",";
-                }
-                tmp = Convert.ToDouble(textBoxEqual.Text);
+                textBoxEqual.Text = "0,";
             }
-            
-            else if (e.KeyChar == '=' || e.KeyChar == '\r' &&
-                action != PrevAction.Equal &&
-                action != PrevAction.none)
+            else
+            {
+                textBoxEqual.Text += ",";
+            }
+            tmp = Convert.ToDouble(textBoxEqual.Text);
+        }
+        private void Add()
+        {
+            if (action == PrevAction.Equal) textBoxActivity.Text += " + ";
+            else if (textBoxEqual.Text.Length != 0 && !clear)
+            {
+                textBoxActivity.Text += (textBoxEqual.Text + " + ");
+                textBoxEqual.Clear();
+            }
+            else textBoxActivity.Text = textBoxActivity.Text.Remove(textBoxActivity.Text.Length - 3) + " + ";
+            Action();
+            action = PrevAction.Add;
+            clear = true;
+            //tmp = 0;
+            textBoxEqual.Text = Convert.ToString(equal);
+        }
+        private void Minus()
+        {
+            if (action == PrevAction.Equal) textBoxActivity.Text += " + ";
+            else if (textBoxEqual.Text.Length != 0 && !clear)
+            {
+                textBoxActivity.Text += (textBoxEqual.Text + " - ");
+                textBoxEqual.Clear();
+            }
+            else textBoxActivity.Text = textBoxActivity.Text.Remove(textBoxActivity.Text.Length - 3) + " - ";
+            Action();
+            action = PrevAction.Minus;
+            clear = true;
+            //tmp = 0;
+            textBoxEqual.Text = Convert.ToString(equal);
+        }
+        private void Multipl()
+        {
+            if (action == PrevAction.Equal) textBoxActivity.Text += " * ";
+            else if (textBoxEqual.Text.Length != 0 && !clear)
+            {
+                textBoxActivity.Text += (textBoxEqual.Text + " * ");
+                textBoxEqual.Clear();
+            }
+            else textBoxActivity.Text = textBoxActivity.Text.Remove(textBoxActivity.Text.Length - 3) + " * ";
+            Action();
+            action = PrevAction.Multipl;
+            clear = true;
+            //tmp = 0;
+            textBoxEqual.Text = Convert.ToString(equal);
+        }
+        private void Division()
+        {
+            if (action == PrevAction.Equal) textBoxActivity.Text += " / ";
+            else if (textBoxEqual.Text.Length != 0 && !clear)
+            {
+                textBoxActivity.Text += (textBoxEqual.Text + " / ");
+                textBoxEqual.Clear();
+            }
+            else textBoxActivity.Text = textBoxActivity.Text.Remove(textBoxActivity.Text.Length - 3) + " / ";
+            Action();
+            action = PrevAction.Division;
+            clear = true;
+            //tmp = 0;
+            textBoxEqual.Text = Convert.ToString(equal);
+        }
+        private void Equal()
+        {
+            if (action != PrevAction.Equal && action != PrevAction.none)
             {
                 Action();
                 action = PrevAction.Equal;
                 textBoxActivity.Text = Convert.ToString(equal);
                 textBoxEqual.Text = Convert.ToString(equal);
-            }
-
-            else if (e.KeyChar == '+')
-            {
-                if (action == PrevAction.Equal) textBoxActivity.Text += " + ";
-                else if (textBoxEqual.Text.Length != 0 && !clear)
-                {
-                    textBoxActivity.Text += (textBoxEqual.Text + " + ");
-                    textBoxEqual.Clear();
-                }
-                else textBoxActivity.Text = textBoxActivity.Text.Remove(textBoxActivity.Text.Length - 3) + " + ";
-                if (equal == 0) equal = tmp;
-                else Action();
-                action = PrevAction.Add;
-                clear = true;
-                tmp = 0;
-                textBoxEqual.Text = Convert.ToString(equal);
-
-            }
-            else if (e.KeyChar == '-')
-            {
-                if (action == PrevAction.Equal) textBoxActivity.Text += " + ";
-                else if (textBoxEqual.Text.Length != 0 && !clear)
-                {
-                    textBoxActivity.Text += (textBoxEqual.Text + " - ");
-                    textBoxEqual.Clear();
-                }
-                else textBoxActivity.Text = textBoxActivity.Text.Remove(textBoxActivity.Text.Length - 3) + " - ";
-                Action();
-                action = PrevAction.Minus;
-                clear = true;
-                tmp = 0;
-                textBoxEqual.Text = Convert.ToString(equal);
+                tmp = Convert.ToDouble(textBoxEqual.Text);
             }
         }
     }
