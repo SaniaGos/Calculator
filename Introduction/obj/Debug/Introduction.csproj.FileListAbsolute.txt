@@ -1,0 +1,10 @@
+C:\Users\SaniaGos\source\repos\Calculator\Introduction\bin\Debug\Introduction.exe.config
+C:\Users\SaniaGos\source\repos\Calculator\Introduction\bin\Debug\Introduction.exe
+C:\Users\SaniaGos\source\repos\Calculator\Introduction\bin\Debug\Introduction.pdb
+C:\Users\SaniaGos\source\repos\Calculator\Introduction\obj\Debug\Introduction.Introduction.resources
+C:\Users\SaniaGos\source\repos\Calculator\Introduction\obj\Debug\Introduction.Properties.Resources.resources
+C:\Users\SaniaGos\source\repos\Calculator\Introduction\obj\Debug\Introduction.csproj.GenerateResource.cache
+C:\Users\SaniaGos\source\repos\Calculator\Introduction\obj\Debug\Introduction.csproj.CoreCompileInputs.cache
+C:\Users\SaniaGos\source\repos\Calculator\Introduction\obj\Debug\Introduction.exe
+C:\Users\SaniaGos\source\repos\Calculator\Introduction\obj\Debug\Introduction.pdb
+C:\Users\SaniaGos\source\repos\Calculator\Introduction\obj\Debug\Introduction.csprojAssemblyReference.cache
