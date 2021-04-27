@@ -48,18 +48,6 @@ namespace Calculator
                     break;
             }
         }
-        private void Calculator_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            if (e.KeyChar >= '0' && e.KeyChar <= '9') Digit(e.KeyChar);
-            else if (e.KeyChar == '.' || e.KeyChar == ',') Point();
-            else if (e.KeyChar == '=' || e.KeyChar == '\r') Equal();
-            else if (e.KeyChar == '+') Add();
-            else if (e.KeyChar == '-') Minus();
-            else if (e.KeyChar == '/') Division();
-            else if (e.KeyChar == '*') Multipl();
-            else if (e.KeyChar == '\b') BackSpase();
-            else if (e.KeyChar == '\u001b') Esc();
-        }
         private void Esc()
         {
             equal = 0;
@@ -256,5 +244,19 @@ namespace Calculator
         {
             Point();
         }
+
+        private void Calculator_KeyPress_1(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar >= '0' && e.KeyChar <= '9') Digit(e.KeyChar);
+            else if (e.KeyChar == '.' || e.KeyChar == ',') Point();
+            else if (e.KeyChar == '=' || e.KeyChar == '\r') Equal();
+            else if (e.KeyChar == '+') Add();
+            else if (e.KeyChar == '-') Minus();
+            else if (e.KeyChar == '/') Division();
+            else if (e.KeyChar == '*') Multipl();
+            else if (e.KeyChar == '\b') BackSpase();
+            else if (e.KeyChar == '\u001b') Esc();
+        }
+
     }
 }

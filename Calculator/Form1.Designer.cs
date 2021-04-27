@@ -320,11 +320,13 @@ namespace Calculator
             this.Controls.Add(this.textBoxEqual);
             this.Controls.Add(this.textBoxActivity);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.KeyPreview = true;
             this.MaximumSize = new System.Drawing.Size(350, 545);
             this.MinimumSize = new System.Drawing.Size(350, 545);
             this.Name = "Calculator";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Calculator";
-            this.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.Calculator_KeyPress);
+            this.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.Calculator_KeyPress_1);
             this.ResumeLayout(false);
             this.PerformLayout();
 
